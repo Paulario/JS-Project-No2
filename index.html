@@ -1,60 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="styles/main.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+                                                                                             integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+                               integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    </head>
 
-<body>
-    <header class="header">
-        <form name="controlForm">
-            <div class="btn-group me-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-outline-secondary" disabled><i class="fas fa-code"></i></button>
+    <body>
+        <header class="header">
+            <form name="controlForm">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-outline-secondary" disabled><i class="fas fa-code"></i></button>
+                </div>
+                <div id="textDecoration" class="btn-group me-2" role="group" aria-label="First group">
+                    <button value="bold" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                  class="fas fa-bold"></i></button>
+                    <button value="italic" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                    class="fas fa-italic"></i></button>
+                    <button value="underline" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                       class="fas fa-underline"></i></button>
+                    <button value="strikethrough" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                               class="fas fa-strikethrough"></i></button>
+                </div>
+                <div id="textAlignment" class="btn-group me-2" role="group" aria-label="First group">
+                    <button value="text-start" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                            class="fas fa-align-left"></i></button>
+                    <button value="text-center" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                             class="fas fa-align-center"></i></button>
+                    <button value="text-end" type="button" class="btn btn-light btn-outline-secondary"><i
+                                                          class="fas fa-align-right"></i></button>
+                </div>
+                <div id="otherSettings" class="btn-group me-2" role="group" aria-label="First group">
+                    <div class="btn-group dropdown" id="fontFamilyPicker">
+                        <button class="btn btn-light btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">A</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li class="dropdown-item" value="Arial">Arial</li>
+                            <li class="dropdown-item" value="Georgia">Georgia</li>
+                            <li class="dropdown-item" value="Impact">Impact</li>
+                            <li class="dropdown-item" value="Tahoma">Tahoma</li>
+                            <li class="dropdown-item" value="Times New Roman">Times New Roman</li>
+                            <li class="dropdown-item" value="Verdana">Verdana</li>
+                        </ul>
+                    </div>
+                    <div class="btn-group dropdown" id="fontSizePicker">
+                        <button class="btn btn-light btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-text-size"></i></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li class="dropdown-item" value="12px">12px</li>
+                            <li class="dropdown-item" value="14px">14px</li>
+                            <li class="dropdown-item" value="16px">16px</li>
+                            <li class="dropdown-item" value="18px">18px</li>
+                            <li class="dropdown-item" value="20px">20px</li>
+                            <li class="dropdown-item" value="22px">22px</li>
+                            <li class="dropdown-item" value="25px">25px</li>
+                            <li class="dropdown-item" value="30px">30px</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-light btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-palette"></i></button>
+                </div>
+            </form>
+        </header>
+        <main class="main">
+            <div id="result">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
             </div>
-            <div name="textDecoration" class="btn-group me-2" role="group" aria-label="First group">
-                <button name="bold" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-bold"></i></button>
-                <button name="italic" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-italic"></i></button>
-                <button name="underline" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-underline"></i></button>
-                <button name="strikethrough" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-strikethrough"></i></button>
+            <textarea id="editArea" style="display: none;"></textarea>
+        </main>
+        <div class="modal fade" id="textColorPicker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Choose text color</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-            <div name="textAlignment" class="btn-group me-2" role="group" aria-label="First group">
-                <button name="text-start" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-align-left"></i></button>
-                <button name="text-center" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-align-center"></i></button>
-                <button name="text-end" type="button" class="btn btn-light btn-outline-secondary"><i
-                        class="fas fa-align-right"></i></button>
-            </div>
-        </form>
-    </header>
-    <main class="main">
-        <div id="result">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
         </div>
-        <textarea id="editArea" style="display: none;"></textarea>
-    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="main.js"></script>
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+    <script src="scripts/jquery-3.6.0.min.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
