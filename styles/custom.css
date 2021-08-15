@@ -1,0 +1,58 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.btn {
+    color: black !important;
+}
+
+.btn:disabled {
+    background-color: rgba(0,0,0, 0.2) !important;
+}
+
+.header {
+    height: 8vh;
+    background-color: rgba(0,0,0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editArea {
+    width: calc(100vw - 2em);
+    height: calc(92vh - 2em);
+    padding: 4em;
+    margin: auto;
+    resize: none;
+}
+
+#result {
+    width: calc(100vw - 2em);
+    height: calc(92vh - 2em);
+    padding: 2em;
+    margin: auto;
+    resize: none;
+}
+
+#fontFamilyPicker .btn:first-child {
+    font-weight: bold;
+}
+
+
+.color-box {
+    width:  60px;
+    height: 60px;
+    background-color: teal;
+    border-radius: 10px;
+}
+
+.custom-out {
+    border: 1px dashed red;
+}
+
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.underline { text-decoration: underline; }
+.strikethrough {   text-decoration: line-through; }

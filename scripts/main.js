@@ -1,13 +1,17 @@
 'use strict';
 
 $(function () {
-
+    const COLORS = [
+        "#eaff7b", "#00ffab", "#29bdc1", "#d84242", "#913f92",
+        "#e81676", "#d718cf", "#f065f1", "#874df7", "#6b03c2",
+        "#ae1f6e", "#3b415e", "#74a6cc", "#68d4c7", "#cce77f",
+    ]
     let mainForm = document.forms.controlForm;
 
-    $('#fontFamilyPicker li', mainForm).each((i,elem) => {
+    $('#fontFamilyPicker li', mainForm).each((_,elem) => {
         $(elem).css('font-family', $(elem).attr('value'));
     });
-    $('#fontSizePicker li', mainForm).each((i,elem) => {
+    $('#fontSizePicker li', mainForm).each((_,elem) => {
         $(elem).css('font-size', $(elem).attr('value'));
     });
 
@@ -22,8 +26,6 @@ $(function () {
                 alignText(value);
             }
             if (t.closest('.dropdown').is('#fontFamilyPicker')) {
-                console.log('here');
-                console.log(value);
                 setFontFamily(value);
             }
         }
