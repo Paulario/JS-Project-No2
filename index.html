@@ -4,11 +4,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <!-- <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css"> -->
+        <title>TextEditor2.0</title>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
                                integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/main.css">
+        <!-- <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css"> -->
         <link rel="stylesheet" href="styles/custom.css">
     </head>
 
@@ -16,29 +16,29 @@
         <header class="header">
             <form name="controlForm">
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-outline-secondary" disabled><i class="fas fa-code"></i></button>
+                    <button type="button" class="btn bg-white btn-outline-secondary text-black" disabled><i class="fas fa-code"></i></button>
                 </div>
                 <div id="textDecoration" class="btn-group me-2" role="group" aria-label="First group">
-                    <button value="bold" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="bold" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                        class="fas fa-bold"></i></button>
-                    <button value="italic" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="italic" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                          class="fas fa-italic"></i></button>
-                    <button value="underline" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="underline" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                             class="fas fa-underline"></i></button>
-                    <button value="strikethrough" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="strikethrough" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                                 class="fas fa-strikethrough"></i></button>
                 </div>
                 <div id="textAlignment" class="btn-group me-2" role="group" aria-label="First group">
-                    <button value="text-start" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="text-start" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                              class="fas fa-align-left"></i></button>
-                    <button value="text-center" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="text-center" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                               class="fas fa-align-center"></i></button>
-                    <button value="text-end" type="button" class="btn btn-light btn-outline-secondary"><i
+                    <button value="text-end" type="button" class="btn btn-light btn-outline-secondary text-black"><i
                                                            class="fas fa-align-right"></i></button>
                 </div>
                 <div id="otherSettings" class="btn-group me-2" role="group" aria-label="First group">
                     <div class="btn-group dropdown" id="fontFamilyPicker">
-                        <button class="btn btn-light btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">A</button>
+                        <button class="btn btn-light btn-outline-secondary dropdown-toggle text-black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">A</button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li class="dropdown-item" value="Arial">Arial</li>
                             <li class="dropdown-item" value="Georgia">Georgia</li>
@@ -49,7 +49,7 @@
                         </ul>
                     </div>
                     <div class="btn-group dropdown" id="fontSizePicker">
-                        <button class="btn btn-light btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-text-size"></i></button>
+                        <button class="btn btn-light btn-outline-secondary dropdown-toggle text-black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-text-size"></i></button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li class="dropdown-item" value="12px">12px</li>
                             <li class="dropdown-item" value="14px">14px</li>
@@ -61,8 +61,11 @@
                             <li class="dropdown-item" value="30px">30px</li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-light btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#textColorPicker"><i class="fas fa-palette"></i></button>
-                    <button type="button" class="btn btn-light btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#bgPicker"><i class="fas fa-image"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#textColorPicker"><i class="fas fa-palette"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#bgPicker"><i class="fas fa-image"></i></button>
+                </div>
+                <div id="unlockEdit" class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#login"><i class="fas fa-lock"></i></button>
                 </div>
             </form>
         </header>
@@ -78,49 +81,92 @@
             </div>
             <textarea id="editArea" style="display: none;"></textarea>
         </main>
+
+        <!-- modal for choosing text color -->
         <div class="modal fade" id="textColorPicker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Choose text color</h5>
+                        <h5 class="modal-title">Choose text color</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                        <div id="textColor">
+                            <div class="justify-content-center align-items-center">
+                                <div class="color-grid container-fluid grid p-0" id="colorsForText" style="--bs-columns: 7; --bs-gap: 5px;"></div>
                             </div>
-                        </nav>
-                        <div class="tab-content mt-2" id="textColor">
-                            <div class="tab-pane fade show active d-flex justify-content-end" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="grid custom-out" style="--bs-gap: 5px">
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                    <div class="color-box" value="">1</div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- modal for choosing background -->
         <div class="modal fade" id="bgPicker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Choose background</h5>
+                        <h5 class="modal-title">Choose background color or image</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-bgColor-tab" data-bs-toggle="tab" 
+                                    data-bs-target="#bgColor" type="button" role="tab" aria-controls="nav-bgColor" aria-selected="true">Colors</button>
+
+                                <button class="nav-link" id="nav-bgImage-tab" data-bs-toggle="tab" 
+                                    data-bs-target="#bgImage" type="button" role="tab" aria-controls="nav-bgImage" aria-selected="false">Images</button>
+
+                                <button class="nav-link" id="nav-bgFile-tab" data-bs-toggle="tab" 
+                                    data-bs-target="#bgFile" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Files</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content mt-2 grid justify-content-center align-content-center" style="--bs-columns: 1;">
+
+                            <div class="tab-pane fade show active" 
+                                id="bgColor" role="tabpanel" aria-labelledby="bgColor">
+                                <div class="color-grid container-fluid grid p-0" id="bgColors" style="--bs-columns: 7; --bs-gap: 7px;"></div>
+                            </div>
+
+                            <div class="tab-pane fade show" 
+                                id="bgImage" role="tabpanel" aria-labelledby="bgImage">
+                                <div class="image-grid container-fluid grid p-0" id="bgImages" style="--bs-columns: 3; --bs-gap: 15px;"></div>
+                            </div>
+
+                            <div class="tab-pane fade" id="bgFile" role="tabpanel" aria-labelledby="bgFile" >
+                                <div class="form-input">
+                                    <label for="filePicker">Browse</label>
+                                    <input type="file" class="form-control" id="filePicker" placeholder="Browse" value="Browse">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for unlocking editing mode -->
+        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title">Log In</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form name="login" class="">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                                <label for="email" class="form-label">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                <label for="password" class="form-label">Password</label>
+                            </div>
+                            <div class="d-grid">
+                                <input type="button" class="btn btn-dark" value="Sign In" name="signIn">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
