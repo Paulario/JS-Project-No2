@@ -21,6 +21,7 @@ $(function () {
 
     let mainForm = document.forms.controlForm;
     let loginForm = document.forms.login;
+    let logoutForm = document.forms.logout;
 
     $('#fontFamilyPicker li', mainForm).each((_,elem) => {
         $(elem).css('font-family', $(elem).attr('value'));
@@ -48,6 +49,48 @@ $(function () {
     BG_IMAGES.forEach(elem => {
         $('.image-grid').append(`<div class="image-box" value="${elem}" style="background-image: url('${elem}')"></div>`)
     });
+
+    $(loginForm).click(function(event) {
+        let trg = event.target;
+        let inputs = $(this.elements).filter(':not(:button)');
+        if($(trg).is(':input[name="signIn"]')){
+            $(inputs).trigger('blur');
+            event.preventDefault();
+            let stressInput = (input) => {
+                $(input).addClass('border-2');
+                $(input).removeClass('border-4');
+            };
+            let check = true;
+            $(inputs).each(function(_,elem) {
+                if($(elem).is('.border-danger') || $(elem).is(':not(.border-success)')){
+                    $(elem).removeClass('border-2');
+                    $(elem).addClass('border-4 border-danger text-danger');
+                    setTimeout(stressInput, 2000, elem);
+                    check &= !$(elem).is('.border-danger');
+                }
+            });
+            if(check){
+                $('button:first', $(controlForm)).attr("disabled", false);
+                $(inputs).each(function(_,elem) {
+                    $(elem).attr('value', '');
+                    $(elem).removeClass('border-success border-2 text-success');
+                });
+                $('#login').modal('toggle');
+                $('#logout').modal('toggle');
+            }
+        }
+    });
+
+    $(logoutForm).click(function(event) {
+        let trg = event.target;
+        if($(trg).is(':input[name="logOut"]')){
+            $('#login').modal('toggle');
+            $('#logout').modal('toggle');
+            $('button:first', $(controlForm)).attr("disabled", true);
+        }
+    });
+
+
 
     $('.color-grid').click(event => {
         let trg = $(event.target);

@@ -16,7 +16,7 @@
         <header class="header">
             <form name="controlForm">
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <button type="button" class="btn bg-white btn-outline-secondary text-black" disabled><i class="fas fa-code"></i></button>
+                    <button type="button" class="btn bg-white btn-outline-secondary text-black"  name="editText" disabled><i class="fas fa-code"></i></button>
                 </div>
                 <div id="textDecoration" class="btn-group me-2" role="group" aria-label="First group">
                     <button value="bold" type="button" class="btn btn-light btn-outline-secondary text-black"><i
@@ -102,7 +102,7 @@
         </div>
 
         <!-- modal for choosing background -->
-        <div class="modal fade" id="bgPicker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="bgPicker" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -147,14 +147,14 @@
         </div>
 
         <!-- modal for unlocking editing mode -->
-        <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="login" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
                         <h5 class="modal-title">Log In</h5>
                     </div>
                     <div class="modal-body">
-                        <form name="login" class="">
+                        <form name="login">
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="petroIvanov@gmail.com">
                                 <label for="email" class="form-label">Email</label>
@@ -171,6 +171,26 @@
                 </div>
             </div>
         </div>
+
+        <!-- modal for locking editing mode -->
+        <div class="modal fade" id="logout" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title">LogOut</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form name="logout">
+                            <div class="d-grid">
+                                <input type="button" class="btn btn-dark" value="Log Out" name="logOut">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <script src="styles/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
         <script src="scripts/main.js"></script>
