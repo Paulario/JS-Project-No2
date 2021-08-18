@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
                                integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/main.css">
-        <!-- <link rel="stylesheet" href="styles/bootstrap/dist/css/bootstrap.css"> -->
         <link rel="stylesheet" href="styles/custom.css">
     </head>
 
@@ -68,6 +67,14 @@
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#login"><i class="fas fa-lock"></i></button>
                 </div>
             </form>
+            <form name="generatorForm" style="display: none">
+                <div id="el" class="btn-group me-2" role="group" aria-label="First group">
+                    <button name="save" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-save"></i></button>
+                    <button name="addTable" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-table"></i></button>
+                    <button name="addUl" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-list-ul"></i></button>
+                    <button name="addOl" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-list-ol"></i></button>
+                </div>
+            </form>
         </header>
         <main class="main">
             <div id="result">
@@ -113,24 +120,24 @@
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <button class="nav-link active" id="nav-bgColor-tab" data-bs-toggle="tab" 
-                                    data-bs-target="#bgColor" type="button" role="tab" aria-controls="nav-bgColor" aria-selected="true">Colors</button>
+                                                                                     data-bs-target="#bgColor" type="button" role="tab" aria-controls="nav-bgColor" aria-selected="true">Colors</button>
 
                                 <button class="nav-link" id="nav-bgImage-tab" data-bs-toggle="tab" 
-                                    data-bs-target="#bgImage" type="button" role="tab" aria-controls="nav-bgImage" aria-selected="false">Images</button>
+                                                                              data-bs-target="#bgImage" type="button" role="tab" aria-controls="nav-bgImage" aria-selected="false">Images</button>
 
                                 <button class="nav-link" id="nav-bgFile-tab" data-bs-toggle="tab" 
-                                    data-bs-target="#bgFile" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Files</button>
+                                                                             data-bs-target="#bgFile" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Files</button>
                             </div>
                         </nav>
                         <div class="tab-content mt-2 grid justify-content-center align-content-center" style="--bs-columns: 1;">
 
                             <div class="tab-pane fade show active" 
-                                id="bgColor" role="tabpanel" aria-labelledby="bgColor">
+                                 id="bgColor" role="tabpanel" aria-labelledby="bgColor">
                                 <div class="color-grid container-fluid grid p-0" id="bgColors" style="--bs-columns: 7; --bs-gap: 7px;"></div>
                             </div>
 
                             <div class="tab-pane fade show" 
-                                id="bgImage" role="tabpanel" aria-labelledby="bgImage">
+                                 id="bgImage" role="tabpanel" aria-labelledby="bgImage">
                                 <div class="image-grid container-fluid grid p-0" id="bgImages" style="--bs-columns: 3; --bs-gap: 15px;"></div>
                             </div>
 

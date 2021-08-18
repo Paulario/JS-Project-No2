@@ -21,17 +21,33 @@ body {
     align-items: center;
 }
 
+.main {
+    position: relative;
+    height: 92vh;
+    width: 100%;
+}
+
 #editArea {
-    width: calc(100vw - 2em);
-    height: calc(92vh - 2em);
+    position: absolute;
+    inset: 0;
+    width: 100%;
     padding: 4em;
-    margin: auto;
+    margin: 0;
     resize: none;
+    outline: 0;
+    border: 0;
+}
+
+#editArea:focus {
+    outline: 0;
+    border: 0;
 }
 
 #result {
-    width: calc(100vw - 2em);
-    height: calc(92vh - 2em);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: calc(92vh);
     padding: 2em;
     margin: auto;
     resize: none;
