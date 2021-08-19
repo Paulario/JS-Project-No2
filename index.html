@@ -15,24 +15,29 @@
     <body>
         <header class="header">
             <form name="controlForm">
-                <div id="editTextGroup" class="btn-group me-2" name="fuck" role="group" aria-label="First group">
-                    <button type="button" class="btn bg-white btn-outline-secondary text-black" name="editText" disabled><i class="fas fa-code"></i></button>
+
+                <div id="editTextGroup" class="btn-group me-2" name="fuck" role="group">
+                    <button type="button" class="btn bg-white btn-outline-secondary text-black" data-action="editText" disabled><i class="fas fa-code"></i></button>
                 </div>
-                <div id="textDecorationButtonGroup" class="btn-group me-2" role="group" aria-label="First group">
+
+                <div id="textStyleButtonGroup" class="btn-group me-2" role="group" >
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeBold"><i class="fas fa-bold"></i></button>
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeItalic"><i class="fas fa-italic"></i></button>
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeUnderline"><i class="fas fa-underline"></i></button>
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeStrikethrough"><i class="fas fa-strikethrough"></i></button>
                 </div>
-                <div id="textAlignmentButtonGroup" class="btn-group me-2" role="group" aria-label="First group">
+
+                <div id="textAlignmentButtonGroup" class="btn-group me-2" role="group">
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textStart"><i class="fas fa-align-left"></i></button>
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textCenter"><i class="fas fa-align-center"></i></button>
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textEnd"><i class="fas fa-align-right"></i></button>
                 </div>
-                <div id="otherSettings" class="btn-group me-2" role="group" aria-label="First group">
-                    <div class="btn-group dropdown" id="fontFamilyPicker">
-                        <button class="btn btn-light btn-outline-secondary dropdown-toggle text-black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">A</button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                <div id="otherSettings" class="btn-group me-2" role="group">
+
+                    <div id="fontFamilyPicker" class="btn-group dropdown" data-prop="font-family" data-action="setFontFamily">
+                        <button class="btn btn-light btn-outline-secondary text-black dropdown-toggle" type="button" data-bs-toggle="dropdown">A</button>
+                        <ul class="dropdown-menu">
                             <li class="dropdown-item" value="Arial">Arial</li>
                             <li class="dropdown-item" value="Georgia">Georgia</li>
                             <li class="dropdown-item" value="Impact">Impact</li>
@@ -41,9 +46,10 @@
                             <li class="dropdown-item" value="Verdana">Verdana</li>
                         </ul>
                     </div>
-                    <div class="btn-group dropdown" id="fontSizePicker">
-                        <button class="btn btn-light btn-outline-secondary dropdown-toggle text-black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-text-size"></i></button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                    <div id="fontSizePicker" class="btn-group dropdown" data-prop="font-size" data-action="setFontSize">
+                        <button class="btn btn-light btn-outline-secondary text-black dropdown-toggle " type="button" data-bs-toggle="dropdown"><i class="fas fa-text-size"></i></button>
+                        <ul class="dropdown-menu">
                             <li class="dropdown-item" value="12px">12px</li>
                             <li class="dropdown-item" value="14px">14px</li>
                             <li class="dropdown-item" value="16px">16px</li>
@@ -54,22 +60,30 @@
                             <li class="dropdown-item" value="30px">30px</li>
                         </ul>
                     </div>
+
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#textColorPicker"><i class="fas fa-palette"></i></button>
+
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#bgPicker"><i class="fas fa-image"></i></button>
+
                 </div>
-                <div id="unlockEdit" class="btn-group me-2" role="group" aria-label="First group">
+
+                <div id="unlockEdit" class="btn-group me-2" role="group">
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#login"><i class="fas fa-lock"></i></button>
                 </div>
+
             </form>
             <form name="generatorForm" style="display: none">
-                <div id="el" class="btn-group me-2" role="group" aria-label="First group">
-                    <button name="save" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-save"></i></button>
-                    <button name="addTable" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-table"></i></button>
-                    <button name="addUl" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-list-ul"></i></button>
-                    <button name="addOl" type="button" class="btn btn-light btn-outline-secondary text-black"><i class="fas fa-list-ol"></i></button>
+
+                <div id="el" class="btn-group me-2" role="group">
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="save"><i class="fas fa-save"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createTable"><i class="fas fa-table"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createUl"><i class="fas fa-list-ul"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createOl"><i class="fas fa-list-ol"></i></button>
                 </div>
+
             </form>
         </header>
+
         <main class="main">
             <div id="result">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, possimus!</p>
@@ -84,7 +98,7 @@
         </main>
 
         <!-- modal for choosing text color -->
-        <div class="modal fade" id="textColorPicker" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="textColorPicker">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -94,7 +108,8 @@
                     <div class="modal-body">
                         <div id="textColor">
                             <div class="justify-content-center align-items-center">
-                                <div class="color-grid container-fluid grid p-0" id="colorsForText" style="--bs-columns: 7; --bs-gap: 5px;"></div>
+                                <div id="textColors" class="color-grid container-fluid grid p-0" 
+                                    data-prop="color" style="--bs-columns: 7; --bs-gap: 5px;"></div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +118,7 @@
         </div>
 
         <!-- modal for choosing background -->
-        <div class="modal fade" id="bgPicker" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="bgPicker">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,29 +128,24 @@
                     <div class="modal-body">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-bgColor-tab" data-bs-toggle="tab" 
-                                                                                     data-bs-target="#bgColor" type="button" role="tab" aria-controls="nav-bgColor" aria-selected="true">Colors</button>
-
-                                <button class="nav-link" id="nav-bgImage-tab" data-bs-toggle="tab" 
-                                                                              data-bs-target="#bgImage" type="button" role="tab" aria-controls="nav-bgImage" aria-selected="false">Images</button>
-
+                                <button id="nav-bgColor-tab" class="nav-link active" data-bs-toggle="tab" 
+                                    data-bs-target="#bgColor" type="button" role="tab">Colors</button>
+                                <button class="nav-link" id="nav-bgImage-tab" 
+                                    data-bs-toggle="tab" data-bs-target="#bgImage" type="button" role="tab">Images</button>
                                 <button class="nav-link" id="nav-bgFile-tab" data-bs-toggle="tab" 
-                                                                             data-bs-target="#bgFile" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Files</button>
+                                    data-bs-target="#bgFile" type="button" role="tab">Files</button>
                             </div>
                         </nav>
                         <div class="tab-content mt-2 grid justify-content-center align-content-center" style="--bs-columns: 1;">
-
-                            <div class="tab-pane fade show active" 
-                                 id="bgColor" role="tabpanel" aria-labelledby="bgColor">
-                                <div class="color-grid container-fluid grid p-0" id="bgColors" style="--bs-columns: 7; --bs-gap: 7px;"></div>
+                            <div id="bgColor" class="tab-pane fade show active" role="tabpanel">
+                                <div id="bgColors" class="color-grid container-fluid grid p-0" data-prop="background-color"
+                                    style="--bs-columns: 7; --bs-gap: 7px;"></div>
                             </div>
-
-                            <div class="tab-pane fade show" 
-                                 id="bgImage" role="tabpanel" aria-labelledby="bgImage">
-                                <div class="image-grid container-fluid grid p-0" id="bgImages" style="--bs-columns: 3; --bs-gap: 15px;"></div>
+                            <div id="bgImage" class="tab-pane fade show" role="tabpanel">
+                                <div id="bgImages" class="image-grid container-fluid grid p-0" data-prop="background-image"
+                                    style="--bs-columns: 3; --bs-gap: 15px;"></div>
                             </div>
-
-                            <div class="tab-pane fade" id="bgFile" role="tabpanel" aria-labelledby="bgFile" >
+                            <div id="bgFile" class="tab-pane fade" role="tabpanel">
                                 <div class="form-input">
                                     <label for="filePicker">Browse</label>
                                     <input type="file" class="form-control" id="filePicker" placeholder="Browse" value="Browse">
@@ -147,26 +157,26 @@
             </div>
         </div>
 
-        <!-- modal for unlocking editing mode -->
-        <div class="modal fade" id="login" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                        <h5 class="modal-title">Log In</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form name="login">
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="petroIvanov@gmail.com">
-                                <label for="email" class="form-label">Email</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="qwerty123456">
-                                <label for="password" class="form-label">Password</label>
-                            </div>
-                            <div class="d-grid">
-                                <input type="button" class="btn btn-dark" value="Sign In" name="signIn">
-                            </div>
+    <!-- modal for unlocking editing mode -->
+    <div class="modal fade" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title">Log In</h5>
+                </div>
+                <div class="modal-body">
+                    <form name="login">
+                        <div class="form-floating mb-3">
+                            <input id="email" class="form-control" type="email" name="email" value="petroIvanov@gmail.com">
+                            <label for="email" class="form-label">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="qwerty123456">
+                            <label for="password" class="form-label">Password</label>
+                        </div>
+                        <div class="d-grid">
+                            <input type="button" class="btn btn-dark" value="Sign In" name="signIn">
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -174,7 +184,7 @@
         </div>
 
         <!-- modal for locking editing mode -->
-        <div class="modal fade" id="logout" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="logout">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
@@ -191,10 +201,11 @@
             </div>
         </div>
 
-
         <script src="styles/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
-        <script src="scripts/formClasses.js"></script>
+        <script src="scripts/basicClasses.js"></script>
+        <script src="scripts/textStyleButtonGroup.js"></script>
+        <script src="scripts/formValidationClasses.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 

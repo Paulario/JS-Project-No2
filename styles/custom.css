@@ -58,14 +58,14 @@ body {
 }
 
 
-.color-box {
+.color-grid .grid-tile {
     width:  60px;
     height: 60px;
     background-color: teal;
     border-radius: 10px;
 }
 
-.image-box {
+.image-grid .grid-tile {
     background-size: cover;
     background-position: center;
     width:  140px;

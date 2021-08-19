@@ -3,35 +3,43 @@
 $(function () {
     const COLORS = [
         "#eaff7b", "#00ffab", "#29bdc1", "#d84242", "#913f92", "#e81676", "#d718cf",
-        "#f065f1", "#874df7", "#6b03c2", "#ae1f6e", "#3b415e", "#fff", "#68d4c7",
+        "#f065f1", "#874df7", "#6b03c2", "#ae1f6e", "#3b415e", "#eee", "#68d4c7",
         "#cce77f", "#d40f0f", "#3a21db", "#0ab02e", "#e7de11", "#7c7c7c", "#74b66f"
     ];
 
     const BG_IMAGES = [ 
-        'https://i.pinimg.com/originals/dd/d8/74/ddd87470879597c31e55ef07b27546bf.png',
-        'https://i.pinimg.com/originals/99/f7/6b/99f76b3de162688defe73255366828e2.jpg',
-        'https://i.pinimg.com/originals/56/2f/99/562f9979bd5ef3b87175609fcebef393.jpg',
-        'https://wallpaperaccess.com/full/2029165.jpg',
-        'https://wallpaper.dog/large/20459082.jpg',
-        'https://cdn.wallpapersafari.com/55/48/FM2C4X.jpg',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwi1vA8p5gL_8TCwrxt43YmQjPU4ywKkUiPQ&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMQIl6rhhMHNJ47Xnrrvm5ioBMVoJciLQzwg&usqp=CAU',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrsTlS0LM9w2UPhpuKFpiZhalSXEm5uWxTw&usqp=CAU',
+        '../images/apelsin-grafika-teni.jpg',
+        '../images/blue-material-design-tekstura-fon-linii-background.jpg',
+        '../images/captain-america-marvel-superhero-mask-simple-background-red.jpg',
+        '../images/green-mountains-peizazh-zelenyi-peizazh-gory-nochnoe-nebo-no.jpg',
+        '../images/ios-13-blue-white-background.jpg',
+        '../images/izumrudnyi-emerald-sinii-blue-goluboi-zheltyi-zelenyi-green.jpg',
+        '../images/minimalizm-figury-grafika-treugolnik-krugi-krestiki-pliusiki.jpg',
+        '../images/solntse-lodka-otrazhenie-siluet-krasnyi-krug-chernyi-fon-noc.jpg',
+        '../images/svet-krasnyi-fonarik.jpg',
     ]
+
+    BG_IMAGES.forEach(elem => {
+        $('#bgImages').append(`<div class="grid-tile" value="url(./images/${elem})" 
+            style="background-image: url('./images/${elem}')"></div>`)
+    });
+
+    COLORS.forEach(elem => {
+        $('.color-grid').append(`<div class="grid-tile" value="${elem}" 
+            style="background-color: ${elem}"></div>`)
+    });
+
+    const RESULT = $('#result');
 
     let mainForm = document.forms.controlForm;
     let loginForm = document.forms.login;
     let logoutForm = document.forms.logout;
     let generatorForm = document.forms.generatorForm;
-    
 
-    $('#fontFamilyPicker li', mainForm).each((_,elem) => {
-        $(elem).css('font-family', $(elem).attr('value'));
-    });
-
-    $('#fontSizePicker li', mainForm).each((_,elem) => {
-        $(elem).css('font-size', $(elem).attr('value'));
-    });
+    let textStyleButtons = new TextStyleButtonGroup($('#textStyleButtonGroup'), RESULT);
+    let textAlignmentButtons = new TextAlignmentButtonGroup($('#textAlignmentButtonGroup'), RESULT);
+    let ffDropdown = new DropdownPropPicker($('#fontFamilyPicker'), RESULT);
+    let fsDropdown = new DropdownPropPicker($('#fontSizePicker'), RESULT);
 
     $('#bgFile :file').change(function() {
         let file = this.files[0];
@@ -43,14 +51,12 @@ $(function () {
             reader.readAsDataURL(file);
         }
     })
+    
 
-    COLORS.forEach(elem => {
-        $('.color-grid').append(`<div class="color-box" value="${elem}" style="background-color: ${elem}"></div>`)
-    });
+    let bgColorPicker = new GridPicker($('#bgColors'), RESULT);
+    let bgImagePicker = new GridPicker($('#bgImages'), RESULT);
+    let textColorPicker = new GridPicker($('#textColors'), RESULT);
 
-    BG_IMAGES.forEach(elem => {
-        $('.image-grid').append(`<div class="image-box" value="${elem}" style="background-image: url('${elem}')"></div>`)
-    });
 
     $(loginForm.signIn).click(function(event) {
         let inputs = $(this.elements).filter(':not(:button)');
@@ -88,58 +94,10 @@ $(function () {
     });
 
     $(controlForm.editText).click(function(event) {
-        // $('#result').show();
-        // $('#editArea').hide();
-        // $('#result').html($('#editArea').val());        
-
-        $('#result').hide();
+        RESULT.hide();
         $('#editArea').show();
-        $('#editArea').val($('#result').html());        
+        $('#editArea').val(RESULT.html());        
     });
-
-
-
-    $('.color-grid').click(event => {
-        let trg = $(event.target);
-        if($(trg).is('.color-box')){
-            let value = $(trg).attr('value');
-            if($(trg).parent().is('#bgColors')){
-                $('body').css({
-                    backgroundColor: value,
-                })
-            } else {
-                $('#result').css("color", value)
-            }
-        }
-    })
-
-    $('.image-grid').click(event => {
-        let trg = $(event.target);
-        if($(trg).is('.image-box')){
-            let value = $(trg).attr('value');
-            if($(trg).parent().is('#bgImages')){
-                $('body').css({
-                    backgroundColor: '',
-                    backgroundImage: `url('${value}')`
-                })
-            }
-        }
-    })
-
-    $('#fontFamilyPicker').click(function(event) {
-        if($(event.target).is('.dropdown-item')){
-            let value = $(event.target).attr('value');
-            setFontFamily(value);
-        }
-    })
-
-    $('#fontSizePicker').click(function(event) {
-        if($(event.target).is('.dropdown-item')){
-            let value = $(event.target).attr('value');
-            setFontSize(value);
-        }
-    })
-
 
     $(loginForm.email).blur(function(event){
         validate(isValidEmail(event.target.value), event.target);
@@ -150,39 +108,8 @@ $(function () {
         validate(isValidPassword(event.target.value), event.target);
     })
 
-    function setFontSize(value){
-        let r = $('#result');
-        r.css('font-size', value);
-    }
 
-    function setFontFamily(value){
-        let r = $('#result');
 
-        r.css('font-family', value);
-    }
-
-    function alignText(align) {
-        let r = $('#result');
-        let opts = ['text-start', "text-center", "text-end"];
-        if (opts.indexOf(align) !== -1) {
-            r.removeClass(opts.join(" "));
-            r.addClass(align)
-        }
-    }
-
-    function decoreText(name) {
-        let r = $('#result');
-        let opts = ['bold', 'italic', 'underline', 'strikethrough'];
-        if (opts.indexOf(name) !== -1) {
-            if (name === 'underline'
-                && r.is('.strikethrough')) {
-                r.removeClass('strikethrough');
-                r.addClass('underline');
-                return;
-            }
-            r.toggleClass(name);
-        }
-    }
 
     function isValidEmail(email){
         email = email.trim();
