@@ -126,21 +126,6 @@ $(function () {
         }
     })
 
-
-    $(mainForm).click(function(event){
-        let t = $(event.target.closest('.btn'));
-        if(!jQuery.isEmptyObject(t)){
-            let value = $(t).attr('value');
-            if (t.parent().is('#textDecoration')) {
-                decoreText(value);
-            }
-            if (t.parent().is('#textAlignment')) {
-                alignText(value);
-            }
-        }
-
-    })
-
     $('#fontFamilyPicker').click(function(event) {
         if($(event.target).is('.dropdown-item')){
             let value = $(event.target).attr('value');
@@ -172,6 +157,7 @@ $(function () {
 
     function setFontFamily(value){
         let r = $('#result');
+
         r.css('font-family', value);
     }
 

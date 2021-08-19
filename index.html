@@ -11,29 +11,23 @@
         <link rel="stylesheet" href="styles/custom.css">
     </head>
 
+
     <body>
         <header class="header">
             <form name="controlForm">
-                <div class="btn-group me-2" role="group" aria-label="First group">
-                    <button type="button" class="btn bg-white btn-outline-secondary text-black"  name="editText" disabled><i class="fas fa-code"></i></button>
+                <div id="editTextGroup" class="btn-group me-2" name="fuck" role="group" aria-label="First group">
+                    <button type="button" class="btn bg-white btn-outline-secondary text-black" name="editText" disabled><i class="fas fa-code"></i></button>
                 </div>
-                <div id="textDecoration" class="btn-group me-2" role="group" aria-label="First group">
-                    <button value="bold" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                       class="fas fa-bold"></i></button>
-                    <button value="italic" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                         class="fas fa-italic"></i></button>
-                    <button value="underline" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                            class="fas fa-underline"></i></button>
-                    <button value="strikethrough" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                                class="fas fa-strikethrough"></i></button>
+                <div id="textDecorationButtonGroup" class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeBold"><i class="fas fa-bold"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeItalic"><i class="fas fa-italic"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeUnderline"><i class="fas fa-underline"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="makeStrikethrough"><i class="fas fa-strikethrough"></i></button>
                 </div>
-                <div id="textAlignment" class="btn-group me-2" role="group" aria-label="First group">
-                    <button value="text-start" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                             class="fas fa-align-left"></i></button>
-                    <button value="text-center" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                              class="fas fa-align-center"></i></button>
-                    <button value="text-end" type="button" class="btn btn-light btn-outline-secondary text-black"><i
-                                                           class="fas fa-align-right"></i></button>
+                <div id="textAlignmentButtonGroup" class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textStart"><i class="fas fa-align-left"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textCenter"><i class="fas fa-align-center"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="textEnd"><i class="fas fa-align-right"></i></button>
                 </div>
                 <div id="otherSettings" class="btn-group me-2" role="group" aria-label="First group">
                     <div class="btn-group dropdown" id="fontFamilyPicker">
@@ -200,6 +194,7 @@
 
         <script src="styles/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
+        <script src="scripts/formClasses.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 
