@@ -33,6 +33,7 @@ $(function () {
 
     let mainForm = document.forms.controlForm;
     let loginForm = document.forms.login;
+
     let logoutForm = document.forms.logout;
     let generatorForm = document.forms.generatorForm;
 
@@ -40,6 +41,10 @@ $(function () {
     let textAlignmentButtons = new TextAlignmentButtonGroup($('#textAlignmentButtonGroup'), RESULT);
     let ffDropdown = new DropdownPropPicker($('#fontFamilyPicker'), RESULT);
     let fsDropdown = new DropdownPropPicker($('#fontSizePicker'), RESULT);
+
+    let bgColorPicker = new GridPicker($('#bgColors'), RESULT);
+    let bgImagePicker = new GridPicker($('#bgImages'), RESULT);
+    let textColorPicker = new GridPicker($('#textColors'), RESULT);
 
     $('#bgFile :file').change(function() {
         let file = this.files[0];
@@ -50,48 +55,10 @@ $(function () {
         if(file){
             reader.readAsDataURL(file);
         }
-    })
-    
-
-    let bgColorPicker = new GridPicker($('#bgColors'), RESULT);
-    let bgImagePicker = new GridPicker($('#bgImages'), RESULT);
-    let textColorPicker = new GridPicker($('#textColors'), RESULT);
-
-
-    $(loginForm.signIn).click(function(event) {
-        let inputs = $(this.elements).filter(':not(:button)');
-        $(inputs).trigger('blur');
-        let stressInput = (input) => {
-            $(input).addClass('border-2');
-            $(input).removeClass('border-4');
-        };
-        let check = true;
-        $(inputs).each(function(_,elem) {
-            if($(elem).is('.border-danger') || $(elem).is(':not(.border-success)')){
-                $(elem).removeClass('border-2');
-                $(elem).addClass('border-4 border-danger text-danger');
-                setTimeout(stressInput, 2000, elem);
-                check &= !$(elem).is('.border-danger');
-            }
-        });
-        if(check){
-            $('button:first', $(controlForm)).attr("disabled", false);
-            $(inputs).each(function(_,elem) {
-                $(elem).attr('value', '');
-                $(elem).removeClass('border-success border-2 text-success');
-            });
-            $('#login').modal('toggle');
-            $('#logout').modal('toggle');
-            $('#unlockEdit .btn').attr('data-bs-target', '#logout');
-        }
     });
 
-    $(logoutForm.logOut).click(function(event) {
-        $('#login').modal('toggle');
-        $('#logout').modal('toggle');
-        $('button:first', $(controlForm)).attr("disabled", true);
-        $('#unlockEdit button').attr('data-bs-target', '#login');
-    });
+    loginForm = new FormValidation(loginForm, login);
+    logoutForm - new FormValidation(logoutForm, logout);
 
     $(controlForm.editText).click(function(event) {
         RESULT.hide();
@@ -99,40 +66,33 @@ $(function () {
         $('#editArea').val(RESULT.html());        
     });
 
-    $(loginForm.email).blur(function(event){
-        validate(isValidEmail(event.target.value), event.target);
-    })
-
-
-    $(loginForm.password).blur(function(event){
-        validate(isValidPassword(event.target.value), event.target);
-    })
-
-
-
-
-    function isValidEmail(email){
-        email = email.trim();
-        let regExp = /^(\w+((\.|-)\w+)?\.?)+@(gmail|ukr)\.(ua|com|org|net)$/;
-        return regExp.test(email);
-    }
-
-    function isValidPassword(password){
-        password = password.trim();
-        let regExp = /^(\w|\s){8,255}$/;
-        return regExp.test(password);
-    }
-
-    function validate(isValid, input){
-        if(isValid){
-            input.classList.add('border-success', 'border-2', 'text-success');
-            input.classList.remove('border-danger', 'border-2', 'text-danger');
-        } else {
-            input.classList.add('border-danger', 'border-2', 'text-danger');
-            input.classList.remove('border-success', 'border-2', 'text-success');
+    function login() {
+        let check = true;
+        let unlockBtn = $('#unlockEdit :button');
+        let editBtn = $('#editTextGroup button').eq(0);
+        $(this.inputs).each((_,elem) => {
+            check &= Boolean($(elem).data('valid'));
+        });
+        if(check){
+            setTimeout(() => {
+                $('#loginModal').modal('hide');
+                $('#logoutModal').modal('show');
+                this.reset();
+            }, 500);
+            $('i', $(unlockBtn)).toggleClass('fa-unlock fa-lock');
+            $(editBtn).attr("disabled", false);
+            $(unlockBtn).attr('data-bs-target','#logoutModal');
         }
     }
 
+    function logout(event) {
+        let unlockBtn = $('#unlockEdit :button');
+        let editBtn = $('#editTextGroup button').eq(0);
+        $('#loginModal').modal('show');
+        $('#logoutModal').modal('hide');
+        $(editBtn).attr("disabled", true);
+        $(unlockBtn).attr('data-bs-target', '#loginModal');
+    };
 
 })
 

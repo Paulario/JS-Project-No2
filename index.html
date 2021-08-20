@@ -68,11 +68,11 @@
                 </div>
 
                 <div id="unlockEdit" class="btn-group me-2" role="group">
-                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#login"><i class="fas fa-lock"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-lock"></i></button>
                 </div>
 
             </form>
-            <form name="generatorForm" style="display: none">
+            <form name="generatorForm" style="display: nnone">
 
                 <div id="el" class="btn-group me-2" role="group">
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="save"><i class="fas fa-save"></i></button>
@@ -158,7 +158,7 @@
         </div>
 
     <!-- modal for unlocking editing mode -->
-    <div class="modal fade" id="login">
+    <div class="modal fade" id="loginModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header justify-content-center">
@@ -167,15 +167,15 @@
                 <div class="modal-body">
                     <form name="login">
                         <div class="form-floating mb-3">
-                            <input id="email" class="form-control" type="email" name="email" value="petroIvanov@gmail.com">
+                            <input id="email" class="form-control" type="email" name="email" value="petroIvanov@gmail.com" placeholder="Enter your email" data-checker="email">
                             <label for="email" class="form-label">Email</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="qwerty123456">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="qwerty123456" data-checker="password">
                             <label for="password" class="form-label">Password</label>
                         </div>
                         <div class="d-grid">
-                            <input type="button" class="btn btn-dark" value="Sign In" name="signIn">
+                            <input type="button" class="btn btn-dark" value="Sign In" name="submit">
                         </div>
                         </form>
                     </div>
@@ -184,7 +184,7 @@
         </div>
 
         <!-- modal for locking editing mode -->
-        <div class="modal fade" id="logout">
+        <div class="modal fade" id="logoutModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
@@ -193,7 +193,7 @@
                     <div class="modal-body">
                         <form name="logout">
                             <div class="d-grid">
-                                <input type="button" class="btn btn-dark" value="Log Out" name="logOut">
+                                <input type="button" class="btn btn-dark" value="Log Out" name="submit">
                             </div>
                         </form>
                     </div>
