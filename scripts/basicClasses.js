@@ -5,28 +5,25 @@ function ButtonGroup(group, target){
     this.DOMGroupObject = group;
     this.target = $(target);
     $(this.DOMGroupObject).click(this.onClick.bind(this));
-    if($(this.target).is('.dropdown')){
-
-    }
 }
 
 ButtonGroup.prototype = {
     constructor: ButtonGroup,
     onClick(event) {
         let action = $(event.target).closest('.btn').data('action');
-        if(action){
+        if(action && this[action]){
             this[action](event);
         } else {
-            alert('Not assigned');
+            return;
         }
     }
 } 
 
-function DropdownPropPicker(dropdown, target){
-    'use strict';
+function DropdownPropPicker(dropdown, target, replaceValue=false){
     this.dropdown = $(dropdown);
     this.target = $(target);
     this.prop = $(this.dropdown).data('prop');
+    this.replaceValue = replaceValue;
     $('.dropdown-item', $(this.dropdown)).each((_, elem) => {
         $(elem).css(this.prop, $(elem).attr('value'));
     });
@@ -39,6 +36,9 @@ DropdownPropPicker.prototype = {
         if($(event.target).is('.dropdown-item')){
             let value = $(event.target).attr('value');
             $(this.target).css(this.prop, value);
+            if(this.replaceValue){
+                $('button.dropdown-toggle', this.dropdown).text(value);
+            }
         }
     },
 }

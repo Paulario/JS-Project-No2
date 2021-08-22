@@ -30,20 +30,28 @@ $(function () {
     });
 
     const RESULT = $('#result');
+    const EDIT_AREA = $('#editArea');
+    let logedIn = true;
 
-    let mainForm = document.forms.controlForm;
-    let loginForm = document.forms.login;
+    let styleForm =      $(document.forms.styleForm);
+    let loginForm =      $(document.forms.login);
+    let logoutForm =     $(document.forms.logout);
+    let generatorForm =  $(document.forms.generatorForm);
+    let tableGenerator = $(document.forms.tableGenerator);
+    let ulGenerator =    $(document.forms.ulGenerator);
+    let olGenerator =    $(document.forms.olGenerator);
 
-    let logoutForm = document.forms.logout;
-    let generatorForm = document.forms.generatorForm;
+    let editBtn =   $('#editTextBtn');
+    let unlockBtn = $('#unlockEdit :button');
 
-    let textStyleButtons = new TextStyleButtonGroup($('#textStyleButtonGroup'), RESULT);
-    let textAlignmentButtons = new TextAlignmentButtonGroup($('#textAlignmentButtonGroup'), RESULT);
-    let ffDropdown = new DropdownPropPicker($('#fontFamilyPicker'), RESULT);
-    let fsDropdown = new DropdownPropPicker($('#fontSizePicker'), RESULT);
+    let textStyleBtns =     new TextStyleButtonGroup($('#textStyleButtonGroup'), RESULT);
+    let textAlignmentBtns = new TextAlignmentButtonGroup($('#textAlignmentButtonGroup'), RESULT);
+    let generatorBtns =     new GeneratorButtonGroup(generatorForm, RESULT);
+    let ffDropdown =        new DropdownPropPicker($('#fontFamilyPicker'), RESULT);
+    let fsDropdown =        new DropdownPropPicker($('#fontSizePicker'), RESULT);
 
-    let bgColorPicker = new GridPicker($('#bgColors'), RESULT);
-    let bgImagePicker = new GridPicker($('#bgImages'), RESULT);
+    let bgColorPicker =   new GridPicker($('#bgColors'), RESULT);
+    let bgImagePicker =   new GridPicker($('#bgImages'), RESULT);
     let textColorPicker = new GridPicker($('#textColors'), RESULT);
 
     $('#bgFile :file').change(function() {
@@ -57,42 +65,94 @@ $(function () {
         }
     });
 
-    loginForm = new FormValidation(loginForm, login);
-    logoutForm - new FormValidation(logoutForm, logout);
+    loginForm =      new FormValidation(loginForm, login);
+    logoutForm =     new FormValidation(logoutForm, logout);
+    tableGenerator = new FormValidation(tableGenerator, createTable);
+    ulGenerator =    new FormValidation(ulGenerator, createUl);
+    olGenerator =    new FormValidation(olGenerator, createOl);
 
-    $(controlForm.editText).click(function(event) {
-        RESULT.hide();
-        $('#editArea').show();
-        $('#editArea').val(RESULT.html());        
+    editBtn.click(function(event) {
+        $(styleForm).fadeToggle(250, () => {
+            $(generatorForm).fadeToggle(250);
+        });
+        $(RESULT).fadeToggle(250, () => {
+            $(EDIT_AREA).toggle();
+        });
+        $(EDIT_AREA).val((RESULT.html()));
     });
 
-    function login() {
-        let check = true;
-        let unlockBtn = $('#unlockEdit :button');
-        let editBtn = $('#editTextGroup button').eq(0);
-        $(this.inputs).each((_,elem) => {
-            check &= Boolean($(elem).data('valid'));
-        });
-        if(check){
+    function login(obj) {
             setTimeout(() => {
                 $('#loginModal').modal('hide');
                 $('#logoutModal').modal('show');
-                this.reset();
+                obj.reset();
             }, 500);
             $('i', $(unlockBtn)).toggleClass('fa-unlock fa-lock');
             $(editBtn).attr("disabled", false);
             $(unlockBtn).attr('data-bs-target','#logoutModal');
-        }
     }
 
-    function logout(event) {
-        let unlockBtn = $('#unlockEdit :button');
-        let editBtn = $('#editTextGroup button').eq(0);
+    function logout() {
         $('#loginModal').modal('show');
         $('#logoutModal').modal('hide');
+        $('i', $(unlockBtn)).toggleClass('fa-unlock fa-lock');
         $(editBtn).attr("disabled", true);
         $(unlockBtn).attr('data-bs-target', '#loginModal');
     };
+
+    function trimHTML(html){
+        let lines = html.split('\n');
+        for(const line of lines){
+            let ind = lines.indexOf(line);
+            lines[ind] = line.trim();
+        }
+        html = lines.join('\n').trim();
+        return html;
+    }
+
+    function createTable(obj) {
+        let f = $(obj.form);
+        let countTD = $('#countTD', $(f)).val();
+        let countTR = $('#countTR', $(f)).val();
+        let wTD = $('#countTR', $(f)).val();
+        let hTD = $('#countTR', $(f)).val();
+        let bType = $('#borderStyle', $(f)).val();
+        let bC = $('#borderColor', $(f)).val();
+        let bW = $('#borderWidth', $(f)).val();
+        let table = `
+            <table class="mb-3" style="border: ${bW}px ${bType} ${bC}">
+                ${`<tr>
+                    ${`<td style="height: ${hTD}px; width: ${wTD}px; border: ${bW}px ${bType} ${bC}">TD</td>
+                    `.repeat(countTD).trim()}
+                </tr>
+                `.repeat(countTR).trim()}
+            </table>\n`;
+        $('#editArea').val($('#editArea').val()+table);
+    }
+
+    function createUl(obj){
+        let f = $(obj.form);
+        let n = $('#ulCountLIItem', $(f)).val();
+        let mark = $('#ulListStyle', $(f)).val();
+        let ul = `
+            <ul style="list-style-type: ${mark}">
+                ${`<li>ITEM</li>
+                `.repeat(n).trim()}
+            </ul>\n`;
+        $('#editArea').val($('#editArea').val()+ul);
+    }
+
+    function createOl(obj){
+        let f = $(obj.form);
+        let n = $('#olCountLIItem', $(f)).val();
+        let mark = $('#olListStyle', $(f)).val();
+        let ol = `
+            <ol style="list-style-type: ${mark}">
+                ${`<li>ITEM</li>
+                `.repeat(n).trim()}
+            </ol>\n`;
+        $('#editArea').val($('#editArea').val()+ol);
+    }
 
 })
 

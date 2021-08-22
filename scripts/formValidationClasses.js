@@ -1,11 +1,19 @@
 
 function FormValidation(form,...callback) {
-    this.form = form;
+    this.form = $(form);
     this.submitBtn = $(':button[name="submit"]:last',$(form));
     this.inputs = $(':input', $(this.form)).filter(':not(:button)');
     this.submitBtn.click(this.onClick.bind(this));
     for(const fun of callback){
-        this.submitBtn.click(fun.bind(this));
+        let modified = (obj) => {
+            if(this.allValid()){
+                fun(obj);
+            }
+        }
+        this.submitBtn.click(modified.bind(null, this));
+    }
+    if(this.form[0].resetForm){
+        $(this.form[0].resetForm).click(this.reset.bind(this));
     }
     $(this.inputs).each((_,elem) => {
         $(elem).blur(() => {
@@ -17,7 +25,9 @@ function FormValidation(form,...callback) {
             } else {
                 alert('[WARNING] No suitable checker or pattern provided!');
             }
-            this.validate(elem, checker);
+            if(checker){
+                this.validate(elem, checker);
+            }
         });
     });
 }
@@ -64,10 +74,17 @@ FormValidation.prototype = {
             $(input).data('valid',false);
         }
     },
+    allValid(){
+        let check = true;
+        $(this.inputs).each((_,elem) => {
+            check &= Boolean($(elem).data('valid'));
+        });
+        return check;
+    },
     reset(){
         $(this.form).trigger('reset');
         $(this.inputs).each(function(_,elem) {
-            $(elem).removeClass('border-success border-2 text-success');
+            $(elem).removeClass('border-success border-danger border-2 text-success text-danger');
         });
     },
     onClick(){
@@ -78,5 +95,10 @@ FormValidation.prototype = {
                 $(elem).addClass('border-2 border-danger text-danger');
             }
         });
+        if(this.allValid()){
+            setTimeout(() => {
+                this.reset();
+            }, 500);
+        }
     }
 }

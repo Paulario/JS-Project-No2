@@ -14,10 +14,10 @@
 
     <body>
         <header class="header">
-            <form name="controlForm">
+            <form name="styleForm">
 
-                <div id="editTextGroup" class="btn-group me-2" name="fuck" role="group">
-                    <button type="button" class="btn bg-white btn-outline-secondary text-black" data-action="editText" disabled><i class="fas fa-code"></i></button>
+                <div class="btn-group me-2" name="fuck" role="group">
+                    <button id="editTextBtn" type="button" class="btn bg-white btn-outline-secondary text-black" name="editText" disabled><i class="fas fa-code"></i></button>
                 </div>
 
                 <div id="textStyleButtonGroup" class="btn-group me-2" role="group" >
@@ -72,13 +72,13 @@
                 </div>
 
             </form>
-            <form name="generatorForm" style="display: nnone">
+            <form name="generatorForm" style="display: none">
 
-                <div id="el" class="btn-group me-2" role="group">
+                <div id="editTextGroup" class="btn-group me-2" role="group">
                     <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="save"><i class="fas fa-save"></i></button>
-                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createTable"><i class="fas fa-table"></i></button>
-                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createUl"><i class="fas fa-list-ul"></i></button>
-                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-action="createOl"><i class="fas fa-list-ol"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-target="#createTableModal" data-bs-toggle="modal" data-action="createTable"><i class="fas fa-table"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-target="#createUlModal" data-bs-toggle="modal" data-action="createUl"><i class="fas fa-list-ul"></i></button>
+                    <button type="button" class="btn btn-light btn-outline-secondary text-black" data-bs-target="#createOlModal" data-bs-toggle="modal" data-action="createOl"><i class="fas fa-list-ol"></i></button>
                 </div>
 
             </form>
@@ -201,11 +201,155 @@
             </div>
         </div>
 
+        <!-- modal for opeing table creating modal -->
+        <div class="modal fade" id="createTableModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title">Create table</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="grid" name="tableGenerator" style="--bs-columns: 2;">
+                            <div class="mb-1">
+                                <label for="countTR" class="form-label">Count TR:</label>
+                                <input name="countTR" id="countTR" type="text" class="form-control" placeholder="Enter number of rows" value="4" data-pattern="^\d+$">
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="countTD" class="form-label">Count TD:</label>
+                                <input name="countTD" id="countTD" type="text" class="form-control" placeholder="Enter number of columns" value="6" data-pattern="^\d+$">
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="widthTD" class="form-label">Width of TD: </label>
+                                <input name="widthTD" id="widthTD" type="text" class="form-control" placeholder="Enter width of cells" value="40" data-pattern="^\d+$">
+                            </div>
+
+                            <div class="mb-1">
+                                <label for="heightTD" class="form-label">Height of TD:</label>
+                                <input name="heightTD" id="heightTD" type="text" class="form-control" placeholder="Enter height of cells" value="40" data-pattern="^\d+$">
+                            </div>
+                            <div class="mb-1">
+                                <label for="borderWidth" class="form-label">Width of border:</label>
+                                <input name="borderWidth" id="borderWidth" type="text" class="form-control" placeholder="Enter border width" value="1" data-pattern="^\d+$">
+                            </div>
+                            <div class="hstack gap-3">
+                                <div class="mb-1 w-50">
+                                    <label for="borderStyle" class="form-label">Type of border:</label>
+                                    <select id="borderStyle" name="borderStyle" class="form-select" data-pattern=".*">
+                                        <option value="solid" selected>solid</option>
+                                        <option value="dotted">dotted</option>
+                                        <option value="dashed">dashed</option>
+                                        <option value="double">double</option>
+                                        <option value="groove">groove</option>
+                                        <option value="inset">inset</option>
+                                        <option value="none">none</option>
+                                    </select>
+                                </div>
+                                <div class="mb-1 w-50">
+                                    <label for="borderColor" class="form-label">Color of border:</label>
+                                    <select name="borderColor" class="form-select" id="borderColor" data-pattern=".*">
+                                        <option value="black" selected>black</option>
+                                        <option value="white">white</option>
+                                        <option value="green">green</option>
+                                        <option value="red">red</option>
+                                        <option value="blue">blue</option>
+                                        <option value="violet">violet</option>
+                                        <option value="teal">teal</option>
+                                        <option value="yellow">yellow</option>
+                                        <option value="grey">grey</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="button" class="btn btn-danger" value="Reset" name="resetForm" data-action="reset">
+                            <input type="button" class="btn btn-primary" value="Create table" name="submit" data-action="generateTable">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for opeing ul creating modal -->
+        <div class="modal fade" id="createUlModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title">Create an unordered list</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="" name="ulGenerator" style="--bs-colums: 1;">
+
+                            <div class="mb-3">
+                                <label for="ulCountLIItem" class="form-label">Count li item:</label>
+                                <input name="ulCountLIItem" id="ulCountLIItem" type="text" class="form-control" placeholder="Enter a number of elements" data-pattern="^\d+$">
+                            </div>
+
+                            <div class="mb-4 w-100">
+                                <label for="ulListStyle" class="form-label">Type of mark:</label>
+                                <select name="ulListStyle" class="form-select" id="ulListStyle" data-pattern=".*">
+                                    <option value="disc" selected>disc</option>
+                                    <option value="circle">circle</option>
+                                    <option value="square">square</option>
+                                </select>
+                            </div>
+
+                            <div class="hstack gap-3">
+                                <input type="button" class="btn btn-danger w-50" value="Reset" name="resetForm" data-action="reset">
+                                <input type="button" class="btn btn-primary w-50" value="Create list" name="submit" data-action="generateTable">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for opening ol creating modal -->
+        <div class="modal fade" id="createOlModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title">Create an ordered list</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="olGenerator" style="--bs-colums: 1;">
+
+                            <div class="mb-3">
+                                <label for="olCountLIItem" class="form-label">Count li item:</label>
+                                <input name="olCountLIItem" id="olCountLIItem" type="text" class="form-control" placeholder="Enter a number of elements" data-pattern="^\d+$">
+                            </div>
+
+                            <div class="mb-4 w-100">
+                                <label for="olListStyle" class="form-label">Type of mark:</label>
+                                <select name="olListStyle" class="form-select" id="olListStyle" data-pattern=".*">
+                                    <option value="decimal" selected>decimal - 1,2,3...</option>
+                                    <option value="upper-roman">upper-roman - I,II,III ...</option>
+                                    <option value="lower-roman">lower-roman - i,ii,iii ...</option>
+                                    <option value="upper-latin">upper-latin - A,B,C ...</option>
+                                    <option value="lower-latin">lower-latin - a,b,c ...</option>
+                                </select>
+                            </div>
+
+                            <div class="hstack gap-3 w-100">
+                                <input type="button" class="btn btn-danger w-50" value="Reset" name="resetForm" data-action="reset">
+                                <input type="button" class="btn btn-primary w-50" value="Create list" name="submit" data-action="generateTable">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="styles/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="scripts/jquery-3.6.0.min.js"></script>
         <script src="scripts/basicClasses.js"></script>
-        <script src="scripts/textStyleButtonGroup.js"></script>
         <script src="scripts/formValidationClasses.js"></script>
+        <script src="scripts/textStyleButtonGroup.js"></script>
+        <script src="scripts/editTextButtonGroup.js"></script>
         <script src="scripts/main.js"></script>
     </body>
 
